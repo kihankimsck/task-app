@@ -63,8 +63,8 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**")
-            .addResourceLocations("classpath:/templates/", "classpath:/static/")
-            .setCacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES));
+                .addResourceLocations("classpath:/templates/", "classpath:/static/")
+                .setCacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES));
     }
 }
 ```
@@ -75,15 +75,15 @@ public class WebConfiguration implements WebMvcConfigurer {
 ```xml
 <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
 <dependency>
-	<groupId>org.webjars</groupId>
-	<artifactId>bootstrap</artifactId>
-	<version>5.3.3</version>
+    <groupId>org.webjars</groupId>
+    <artifactId>bootstrap</artifactId>
+    <version>5.3.3</version>
 </dependency>
-<!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
+        <!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
 <dependency>
-	<groupId>org.webjars</groupId>
-	<artifactId>jquery</artifactId>
-	<version>3.7.1</version>
+<groupId>org.webjars</groupId>
+<artifactId>jquery</artifactId>
+<version>3.7.1</version>
 </dependency>
 ```
 
@@ -101,9 +101,9 @@ public class WebConfiguration implements WebMvcConfigurer {
     <title>index</title>
 </head>
 <body>
-    index
-    <script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.min.js}"></script>
+index
+<script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.min.js}"></script>
 </body>
 </html>
 ```
@@ -666,27 +666,37 @@ public interface TaskDao {
 
 ```
 ---
-## MySQL 
+## MySQL
 - DB : spring
 - table : task
 
 ```sql
 
-        CREATE TABLE `spring`.`task` (
-        `id` INT NOT NULL AUTO_INCREMENT COMMENT '태스크 아이디\n',
-        `description` VARCHAR(45) NOT NULL COMMENT '태스크 내용',
-        `complete` TINYINT NOT NULL COMMENT '태스크 완료 여부',
-        `createdAt` DATETIME NOT NULL COMMENT '등록일시',
-        `updatedAt` DATETIME NOT NULL COMMENT '수정일시\n',
-        PRIMARY KEY (`id`));
+CREATE TABLE `spring`.`task` (
+                                 `id` INT NOT NULL AUTO_INCREMENT COMMENT '태스크 아이디\n',
+                                 `description` VARCHAR(45) NOT NULL COMMENT '태스크 내용',
+                                 `complete` TINYINT NOT NULL COMMENT '태스크 완료 여부',
+                                 `createdAt` DATETIME NOT NULL COMMENT '등록일시',
+                                 `updatedAt` DATETIME NOT NULL COMMENT '수정일시\n',
+                                 PRIMARY KEY (`id`));
 ```
 
 ---
 
 ## git
-https://github.com/kihankimsck/springboot-task-app
+https://github.com/kihankimsck/task-app
 ```shell
 git remote add origin git@github.com:kihankimsck/task-app.git
 git branch -M main
 git push -u origin main
 ```
+
+---
+## IntelliJ IDEA > open project with new window
+Settings Click
+
+![1.png](..%2F1.png)
+
+Appearance & Behavior > System Settings > 우측 패널에서 Project > Reopen projects on startup > Ask 선택
+
+![2.png](..%2F2.png)

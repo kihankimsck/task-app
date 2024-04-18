@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.todoapp.dao.TaskDao">
+
+    <select id="getTasks" resultType="com.example.todoapp.models.Task">
+        select id, description, complete, createdAt, updatedAt from task
+    </select>
+
+    <select id="getTask" resultType="com.example.todoapp.models.Task">
+        select * from task where id = #{id}
+    </select>
+
+    <insert id="insertTask" parameterType="com.example.todoapp.models.Task">
+        insert into task (
+            description, complete, createdAt, updatedAt
+        ) values (
+            #{description}, #{complete}, #{createdAt}, #{updatedAt}
+        )
+    </insert>
+
+    <update id="updateTask" parameterType="com.example.todoapp.models.Task">
+        update
+            task
+        set
+            description = #{description}, complete = #{complete}
+        where
+            id = #{id}
+    </update>
+
+    <delete id="deleteTask" parameterType="com.example.todoapp.models.Task">
+        delete from task where id = #{id}
+    </delete>
+</mapper>

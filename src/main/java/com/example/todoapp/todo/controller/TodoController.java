@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Slf4j
 @Controller
 @RequestMapping("/todo")
@@ -21,8 +24,10 @@ public class TodoController {
     @GetMapping("/")
     public String index(Model model) {
         // 1. get todos
+        List<Todo> list = todoService.getTodos();
 
         // 2. set model attributes
+        model.addAttribute("todos",  list);
 
         // 3. return view
         return "index";
@@ -51,13 +56,17 @@ public class TodoController {
     @PostMapping("/create")
     public String create(@Valid Todo todo, BindingResult bindingResult) {
         // 1. validation check
-
-
         // 2. handle validation check result has error
+        if (bindingResult.hasErrors()) {
+            return "createForm";
+        }
 
         // 3. set todo
+        todo.setCreatedAt(LocalDateTime.now());
+        todo.setUpdatedAt(LocalDateTime.now());
 
         // 4. insert todo
+        todoService.create(todo);
 
         // 5. return view
         return "redirect:/todo/";

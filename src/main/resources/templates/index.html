@@ -23,7 +23,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="item : ${tasks}" th:class="${item.complete} ? success : warning">
+        <tr th:each="item : ${todos}" th:class="${item.complete} ? success : warning">
             <td th:text="${item.id}">item_id</td>
             <td th:text="${item.description}"></td>
             <td th:text="${item.complete} == true ? '완료' : '진행중'"></td>
@@ -32,7 +32,7 @@
             <td>
                 <div class="btn btn-group-sm" role="group">
                     <a class="btn btn-info" th:href="@{/todo/moveToUpdate/{id}(id=${item.id})}">수정</a>
-                    <a class="btn btn-danger" th:href="@{/todo/delete/{id}(id=${item.id})}">삭제</a>
+                    <a class="btn btn-primary" th:href="@{/todo/delete/{id}(id=${item.id})}">삭제</a>
                 </div>
             </td>
         </tr>

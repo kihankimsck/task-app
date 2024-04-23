@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
-    <title>등록하기</title>
+    <title>등록하기1</title>
 </head>
 <body>
 <div class="container">
-    <h1 class="text-container">등록하기</h1>
+    <h1 class="text-container">등록하기1 - ${todo.description}</h1>
     <br/>
 
     <div class="col-md-6">
         <form action="#"
-              th:action="@{/create}"
-              th:object="${task}"
+              th:action="@{/todo/create}"
+              th:object="${todo}"
               method="post">
             <div class="form-group">
                 <label for="description">할일</label>

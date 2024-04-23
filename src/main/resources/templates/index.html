@@ -31,15 +31,15 @@
             <td th:text="${#temporals.format(item.updatedAt, 'yyyy년 MM월 dd일 HH시 mm분')}"></td>
             <td>
                 <div class="btn btn-group-sm" role="group">
-                    <a class="btn btn-info" th:href="@{/moveToUpdate/{id}(id=${item.id})}">수정</a>
-                    <a class="btn btn-danger" th:href="@{/delete/{id}(id=${item.id})}">삭제</a>
+                    <a class="btn btn-info" th:href="@{/todo/moveToUpdate/{id}(id=${item.id})}">수정</a>
+                    <a class="btn btn-danger" th:href="@{/todo/delete/{id}(id=${item.id})}">삭제</a>
                 </div>
             </td>
         </tr>
         </tbody>
     </table>
 
-    <p><a class="btn btn-success" th:href="@{/moveToCreate}">태스크 추가</a></p>
+    <p><a class="btn btn-success" th:href="@{/todo/moveToCreate}">태스크 추가</a></p>
 
 </div>
 <script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>

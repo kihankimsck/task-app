@@ -13,7 +13,7 @@
 
     <div class="col-md-6">
         <form action="#"
-            th:action="@{/update/{id}(id=${task.id})}"
+            th:action="@{/todo/update/{id}(id=${task.id})}"
             th:object="${task}"
             method="post">
             <div class="form-group">

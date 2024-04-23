@@ -690,13 +690,3 @@ git remote add origin git@github.com:kihankimsck/task-app.git
 git branch -M main
 git push -u origin main
 ```
-
----
-## IntelliJ IDEA > open project with new window
-Settings Click
-
-![1.png](..%2F1.png)
-
-Appearance & Behavior > System Settings > 우측 패널에서 Project > Reopen projects on startup > Ask 선택
-
-![2.png](..%2F2.png)

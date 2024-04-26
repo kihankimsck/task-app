@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.todoapp.todo.dao.TodoDao">
-    <insert id="create" parameterType="com.example.todoapp.todo.model.Todo" >
+    <insert id="create" parameterType="com.example.todoapp.todo.model.Todo"  >
         insert into task (description, complete, createdAt, updatedAt)
         values(#{description}, #{complete} , #{createdAt}, #{updatedAt})
     </insert>
@@ -9,4 +9,28 @@
     <select id="getTodos" resultType="com.example.todoapp.todo.model.Todo">
         select id, description, complete, createdAt, updatedAt from task
     </select>
+
+    <select id="getTodo" parameterType="int" resultType="com.example.todoapp.todo.model.Todo">
+        select
+            T.updatedAt,
+            T.createdAt,
+            T.id,
+            T.description,
+            T.complete
+        from
+            task T
+        where
+            T.id = #{id}
+    </select>
+
+    <update id="update" parameterType="com.example.todoapp.todo.model.Todo">
+        update
+            task set description = #{description}, complete = #{complete}, updatedAt = #{updatedAt}
+        where
+            id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from task where id = #{id}
+    </delete>
 </mapper>

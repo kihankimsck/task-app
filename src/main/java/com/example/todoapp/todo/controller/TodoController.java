@@ -42,10 +42,12 @@ public class TodoController {
     }
 
     @GetMapping("/moveToUpdate/{id}")
-    public String moveToUpdate(@PathVariable("id") int id) {
+    public String moveToUpdate(@PathVariable("id") int id, Model model) {
         // 1. get todo
+        Todo todo = todoService.getTodo(id);
 
         // 2. model로 todo 정보 전달
+        model.addAttribute("todo", todo);
 
         // 3. return view
         return "updateForm";
@@ -73,21 +75,41 @@ public class TodoController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") int id) {
+    public String delete(@PathVariable("id") int id, Model model) {
 
         // 1. get todo
+        Todo todo = todoService.getTodo(id);
 
         // 2. throw error if the todo not exists
+        if (todo == null) {
+            throw new IllegalArgumentException("존재하지 않는 id 입니다.");
+        }
 
         // 3. delete the todo
-
-        // 4. redirect view
-        return "redirect:/todo/";
+        int result = todoService.delete(id);
+        if (result > 0 ) {
+            model.addAttribute("message", String.format("%d건의 데이터가 삭제처리 되었습니다.", result));
+            return "error";
+        } else {
+            model.addAttribute("message", "삭제처리에 실패하였습니다.");
+            return "error";
+        }
     }
 
-
     @PostMapping("/update/{id}")
-    public String update(@PathVariable("id") int id) {
+    public String update(@PathVariable("id") int id,@Valid Todo todo, BindingResult bindingResult, Model model ) {
+        // 1. validation check
+        // 2. handle validation check result has error
+        if (bindingResult.hasErrors()) {
+            return "updateForm";
+        }
+
+        // 3. set todo
+        todo.setUpdatedAt(LocalDateTime.now());
+
+        // 4. udate todo
+        int result = todoService.update(todo);
+
         return "redirect:/todo/";
     }
 }

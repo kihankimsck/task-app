@@ -14,4 +14,11 @@ public interface TodoDao {
     void create(Todo todo);
 
     List<Todo> getTodos();
+
+    Todo getTodo(int id);
+
+    int update(Todo todo);
+
+    int delete(int id);
+
 }

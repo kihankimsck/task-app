@@ -24,4 +24,19 @@ public class TodoService {
     public List<Todo> getTodos() {
         return todoDao.getTodos();
     }
+
+    public Todo getTodo(int id) {
+        Todo todo = todoDao.getTodo(id);
+        return todo;
+
+//        return todoDao.getTodo(id);
+    }
+
+    public int update(Todo todo) {
+        return todoDao.update(todo);
+    }
+
+    public int delete(int id) {
+        return todoDao.delete(id);
+    }
 }
